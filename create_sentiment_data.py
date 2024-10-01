@@ -9,15 +9,15 @@ root = os.getcwd()
 per_melody_df = pd.read_csv(os.path.join(root, 'bimmuda/metadata/bimmuda_per_melody_metadata.csv'))
 per_song_df = pd.read_csv(os.path.join(root, 'bimmuda/metadata/bimmuda_per_song_metadata.csv'))
 
-per_song_df[["Year"]] = per_song_df[["Year"]].apply(pd.to_numeric)
-per_song_df[["Position"]] = per_song_df[["Position"]].astype(str)
+per_song_df[['Year']] = per_song_df[['Year']].apply(pd.to_numeric)
+per_song_df[['Position']] = per_song_df[['Position']].astype(str)
 
-per_melody_df[["Year"]] = per_melody_df[["Year"]].apply(pd.to_numeric)
-per_melody_df[["Position"]] = per_melody_df[["Position"]].astype(str)
+per_melody_df[['Year']] = per_melody_df[['Year']].apply(pd.to_numeric)
+per_melody_df[['Position']] = per_melody_df[['Position']].astype(str)
 
-remis_source = os.path.join(root, "bimmuda_remis")
+remis_source = os.path.join(root, 'bimmuda_remis')
 remis = os.listdir(remis_source)
-fnames = [r.split(".")[0][:-5] for r in remis]
+fnames = [r.split('.')[0][:-5] for r in remis]
 
 rows_list = []
 
@@ -28,17 +28,17 @@ for remi, fn in zip(remis, fnames):
     src = pickle.load(pickle_file)
   
   # get year & position
-  year, pos = fn.split("_")
+  year, pos = fn.split('_')
   pos = pos[1:] # remove leading 0
 
   # get title, artist, pitch STD
   song_row = per_song_df[(per_song_df['Year'] == int(year)) & (per_song_df['Position'] == pos)].iloc[0]
   melody_rows = per_melody_df[(per_melody_df['ID'].str.startswith(fn))]
-  title = song_row["Title"]
-  artist = song_row["Artist"]
+  title = song_row['Title']
+  artist = song_row['Artist']
 
   # get pitch STD, pitch average, pitch variation, and pitch range
-  pitch_std = melody_rows["Pitch STD"].mean()
+  pitch_std = melody_rows['Pitch STD'].mean()
 
   pitches = sentiment_feature_extraction.get_pitches(src)
   pitch_ave = sentiment_feature_extraction.get_pitch_average(pitches)
@@ -46,7 +46,7 @@ for remi, fn in zip(remis, fnames):
   pitch_range = sentiment_feature_extraction.get_pitch_range(pitches)
 
   # get mode polarity
-  modes = melody_rows["Mode"].to_list()
+  modes = melody_rows['Mode'].to_list()
   mode = 0
   for m in modes:
     if type(m) != str:
@@ -56,22 +56,22 @@ for remi, fn in zip(remis, fnames):
     elif m.lower() == 'minor':
       mode -= 1
     else:
-      raise Exception("unexpected mode")
+      raise Exception('unexpected mode')
   
   # Normalize mode to between -1 and 1
   mode /= len(modes)
 
   # average BPM, note onset density
-  bpms = melody_rows["BPM"].mean()
-  onset_density = melody_rows["Onset Density"].mean()
+  bpms = melody_rows['BPM'].mean()
+  onset_density = melody_rows['Onset Density'].mean()
 
   # store song data
-  row = {"Title": title,
-        "Artist": artist,
+  row = {'Title': title,
+        'Artist': artist,
         'Year': year,
         'Position': pos,
-        'Ave BPM': 0,
-        'Ave Pitch STD': pitch_std.mean(),
+        'Ave BPM': bpms,
+        'Ave Pitch STD': pitch_std,
         'Ave Pitch Value': pitch_ave,
         'Pitch Variation': pitch_var,
         'Pitch Range': pitch_range,
