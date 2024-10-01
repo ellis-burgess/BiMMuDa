@@ -12,18 +12,18 @@ REMI is a method for encoding symbolic music into text-based musical events for 
 
 Based on the research of [research of Panda et al](https://www.researchgate.net/publication/346359767_Audio_Features_for_Music_Emotion_Recognition_a_Survey), the following features have been identified as suitable for extraction from the melodic files in the BiMMuDa dataset. Features which depend on harmonic complexity or textural information, as well as features which do not have a clear consensus on impact on sentiment, have been omitted. Melodic contour has been omitted in this early stage of the research, as extracting melodic contour is more complex than extracting the remaining sentiment features.
 
-| Attribute                     | Associated Quadrant(s) | Extracted |
-| ----------------------------- | ---------------------- | --------- |
-| High pitch                    | Q1, Q4                 |     N     |
-| Low pitch                     | Q2, Q3                 |     N     |
-| Large pitch variation         | Q1                     |     N     |
-| Small pitch variation         | Q3, Q4                 |     N     |
-| Wide pitch range              | Q1, Q4                 |     N     |
-| Narrow pitch range            | Q2                     |     N     |
-| Major mode                    | Q1, Q4                 |     N     |
-| Minor mode                    | Q2, Q3                 |     N     |
-| Fast tempo, high note density | Q1, Q2                 |     N     |
-| Slow tempo, low note density  | Q3, Q4                 |     N     |
+| Attribute                     | Associated Quadrant(s) | Extraction Method |
+| ----------------------------- | ---------------------- | ----------------- |
+| High pitch                    | Q1, Q4                 | Y                 |
+| Low pitch                     | Q2, Q3                 | Y                 |
+| Large pitch variation         | Q1                     | Y                 |
+| Small pitch variation         | Q3, Q4                 | Y                 |
+| Wide pitch range              | Q1, Q4                 | Y                 |
+| Narrow pitch range            | Q2                     | Y                 |
+| Major mode                    | Q1, Q4                 | N/A               |
+| Minor mode                    | Q2, Q3                 | N/A               |
+| Fast tempo, high note density | Q1, Q2                 | N/A               |
+| Slow tempo, low note density  | Q3, Q4                 | N/A               |
 
 ## High Pitch and Low Pitch
 Determined as an average pitch from all note events in the file. For the purposes of this project, 60 (middle C) shall be determined as a threshold. Notes higher than 60 will be considered high pitch, and notes lower than or equal to 60 will be considered low pitch. An average pitch will be taken for all pieces of music.
