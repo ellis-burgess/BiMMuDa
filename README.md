@@ -35,7 +35,7 @@ Pitch variation refers to the number of unique pitches within a piece. For the p
 For the purposes of this project, a large pitch range shall be any piece where the lowest note is greater than a scale lower than the highest note (lowest note < highest note - 12).
 
 ## Major or Minor mode
-Modal data is provided in the original BiMMuDa dataset.
+Modal data is provided in the original BiMMuDa dataset. Since modality is provided per melody in a piece, the modality of a piece shall be expressed as being in the range of -1 to 1, where -1 indicates that all melodies are minor, and 1 indicates that all melodies are major.
 
 ## Tempo
 Tempo data is provided in the original BiMMuDa dataset. A BPM of 90 or greater shall be considered "fast".
