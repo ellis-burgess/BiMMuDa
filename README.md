@@ -2,7 +2,7 @@
 
 This repository is a fork of [The Billboard Melodic Music Dataset](https://github.com/madelinehamilton/), a MIDI dataset of the main melodies of the top five singles from the Billboard Year-End Singles Charts for each year from 1950 to 2022. More information about the project can be found in the Github repository, or in the [associated paper](https://www.nature.com/articles/s41598-024-64571-x).
 
-All files in this repository's "bimmuda" folder are from the original repository. The "bimmuda_full_mids" folder contains every full MIDI file from the original dataset."
+All files in this repository's "bimmuda" folder are from the original repository. The "bimmuda_remis" folder contains every full MIDI file from the original dataset, converted into a REMI pkl file."
 
 # REvamped MIDI-derived events (REMI)
 
