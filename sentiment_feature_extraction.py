@@ -7,15 +7,19 @@ sys.path.append(os.path.join(os.path.dirname(__file__), 'remi'))
 
 import utils
 
-
-def get_pitch_average(remi):
-  # if event is note, get pitch
+def get_pitches(remi):
+  # if event is note on, get pitch
   pitches = []
   for ev in remi:
-    if ev.name == 'Note On':
+    if ev.name == "Note On":
       pitches.append(ev.value)
-  # average all pitches
+  return pitches
+
+def get_pitch_average(pitches):
   return sum(pitches) / len(pitches)
+
+def get_pitch_variation(pitches):
+  return len(set(pitches))
 
 def main():
   # read file
@@ -23,7 +27,9 @@ def main():
   with open(file, 'rb') as pickle_file:
       remi = pickle.load(pickle_file)
   
-  print(get_pitch_average(remi))
+  pitches = get_pitches(remi)
+  print(get_pitch_average(pitches))
+  print(get_pitch_variation(pitches))
 
 if __name__ == "__main__":
   main()
