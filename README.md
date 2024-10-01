@@ -4,4 +4,4 @@ This repository is a fork of [The Billboard Melodic Music Dataset](https://githu
 
 # REvamped MIDI-derived events (REMI)
 
-REMI is a method for encoding symbolic music into text-based musical events for data analysis and use in machine learning. Files in this project's "remi" subfolder are taken from [YatinMusic's REMI repository](https://github.com/YatingMusic/remi). More information about the project can be found in its Github repository, or in its [associatd paper](https://arxiv.org/abs/2002.00212).
+REMI is a method for encoding symbolic music into text-based musical events for data analysis and use in machine learning. The "utils.py" file in this project's "remi" subfolder is taken from [YatinMusic's REMI repository](https://github.com/YatingMusic/remi). The "midi2remi.py" file in the same folder is an adaptation of the "midi2remi.ipynb" file from [the same source](https://github.com/YatingMusic/remi). More information about the project can be found in its Github repository, or in its [associatd paper](https://arxiv.org/abs/2002.00212).
