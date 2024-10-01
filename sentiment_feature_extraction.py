@@ -21,6 +21,9 @@ def get_pitch_average(pitches):
 def get_pitch_variation(pitches):
   return len(set(pitches))
 
+def get_pitch_range(pitches):
+  return max(pitches) - min(pitches)
+
 def main():
   # read file
   file = os.path.join(os.path.dirname(__file__), "bimmuda_remis/1950_01_full.mid.pkl")
@@ -30,6 +33,7 @@ def main():
   pitches = get_pitches(remi)
   print(get_pitch_average(pitches))
   print(get_pitch_variation(pitches))
+  print(get_pitch_range(pitches))
 
 if __name__ == "__main__":
   main()
