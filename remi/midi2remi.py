@@ -12,7 +12,7 @@ def get_many_midi_files(pathname):
   files = os.listdir(pathname)
   for f in files:
     if f.endswith('.mid'):
-      midis.append(get_single_midi_file(f))
+      midis.append(pathname+"\\"+get_single_midi_file(f))
   if len(midis) == 0:
     raise Exception(f"No .mid files found.")
   return midis
@@ -25,15 +25,19 @@ def main():
   print(working_dir)
   path = os.path.join(working_dir, path)
   print(path)
+  output_path = os.path.join(path, "outputs")
+  if not os.path.exists(output_path):
+    os.makedirs(output_path)
 
   midis = []
 
   if path.endswith('.mid'):
     midis.append(get_single_midi_file(path))
   else:
-    midis.append(get_many_midi_files(path))
+    midis= get_many_midi_files(path)
   
   for midi in midis:
+    midi_name = midi.split("\\")[-1]
     note_items, tempo_items = utils.read_items(midi)
     note_items = utils.quantize_items(note_items)
 
@@ -42,7 +46,7 @@ def main():
     groups = utils.group_items(items, max_time)
 
     events = utils.item2event(groups)
-    with open(path+".pkl", 'wb') as p:   
+    with open(output_path+"\\"+midi_name+".pkl", 'wb') as p:   
       pickle.dump(events, p)
 
 if __name__ == "__main__":
