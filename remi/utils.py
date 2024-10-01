@@ -1,10 +1,9 @@
-import chord_recognition
 import numpy as np
 import miditoolkit
 import copy
 
 # parameters for input
-DEFAULT_VELOCITY_BINS = np.linspace(0, 128, 32+1, dtype=np.int)
+DEFAULT_VELOCITY_BINS = np.linspace(0, 128, 32+1, dtype=int)
 DEFAULT_FRACTION = 16
 DEFAULT_DURATION_BINS = np.arange(60, 3841, 60, dtype=int)
 DEFAULT_TEMPO_INTERVALS = [range(30, 90), range(90, 150), range(150, 210)]
@@ -84,20 +83,6 @@ def quantize_items(items, ticks=120):
         item.start += shift
         item.end += shift
     return items      
-
-# extract chord
-def extract_chords(items):
-    method = chord_recognition.MIDIChord()
-    chords = method.extract(notes=items)
-    output = []
-    for chord in chords:
-        output.append(Item(
-            name='Chord',
-            start=chord[0],
-            end=chord[1],
-            velocity=None,
-            pitch=chord[2].split('/')[0]))
-    return output
 
 # group items
 def group_items(items, max_time, ticks_per_bar=DEFAULT_RESOLUTION*4):
