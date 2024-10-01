@@ -25,15 +25,33 @@ def get_pitch_range(pitches):
   return max(pitches) - min(pitches)
 
 def main():
-  # read file
-  file = os.path.join(os.path.dirname(__file__), "bimmuda_remis/1950_01_full.mid.pkl")
-  with open(file, 'rb') as pickle_file:
-      remi = pickle.load(pickle_file)
+  if len(sys.argv) != 2:
+    raise Exception(f"Expected 1 argument, got {len(sys.argv) - 1}")
   
-  pitches = get_pitches(remi)
-  print(get_pitch_average(pitches))
-  print(get_pitch_variation(pitches))
-  print(get_pitch_range(pitches))
+  path = sys.argv[1]
+  path = os.path.join(os.getcwd(), path)
+  print(path)
+  
+  pickles = []
+  files = os.listdir(path)
+  for f in files:
+    if f.endswith('.mid.pkl'):
+      pickles.append(f)
+
+  print(os.path.join(path, pickles[0]))
+
+
+  # read file
+  for pkl in pickles:
+    with open(os.path.join(path, pkl), 'rb') as pickle_file:
+      remi = pickle.load(pickle_file)
+    
+    pitches = get_pitches(remi)
+    pitch_ave = get_pitch_average(pitches)
+    pitch_var = get_pitch_variation(pitches)
+    pitch_range = get_pitch_range(pitches)
+
+    print(round(pitch_ave, 4), pitch_var, pitch_range)
 
 if __name__ == "__main__":
   main()
