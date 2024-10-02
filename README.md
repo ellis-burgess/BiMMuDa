@@ -71,5 +71,6 @@ Initial findings indicate that the most popular quadrant in this dataset is Q1 (
  1. There is no weighting of attributes (relative pitch height is considered as important as piece modality in calculating valence)
  2. Not all attributes have been considered (melodic contour extraction is not yet implemented)
  3. These results are not verified against any other metric (e.g. Spotify data contains sentiment information)
+ 4. The central value for each attribute (i.e. the value at which an attribute moves from positive to negative) has been determined based on the author's own experience and not on any wider research.
 
 Further investigation is required to assess the accuracy of this sentiment identification methodology. If this data proves accurate, it may be useful in identifying trends over time of sentiment in popular music.
