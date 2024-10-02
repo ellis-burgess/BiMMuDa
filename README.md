@@ -1,5 +1,5 @@
 # Identifying Sentiment Trends in Popular Music
-This repository aims to analyse the BiMMuda dataset for sentiment, and determine if there is any observable trend in the sentiment of popular music across time.
+This repository aims to analyse the BiMMuda dataset for sentiment, which may be useful in determining if there is any observable trend in the sentiment of popular music across time.
 
 ## The Billboard Melodic Music Dataset (BiMMuDa)
 
