@@ -19,16 +19,16 @@ In the following table, quadrants refer to [Russell's Circumplex Model of Affect
 
 | Attribute                     | Associated Quadrant(s) | Extraction Method |
 | ----------------------------- | ---------------------- | ----------------- |
-| High pitch                    | Q1, Q4                 | Y                 |
-| Low pitch                     | Q2, Q3                 | Y                 |
-| Large pitch variation         | Q1                     | Y                 |
-| Small pitch variation         | Q3, Q4                 | Y                 |
-| Wide pitch range              | Q1, Q4                 | Y                 |
-| Narrow pitch range            | Q2                     | Y                 |
-| Major mode                    | Q1, Q4                 | N/A               |
-| Minor mode                    | Q2, Q3                 | N/A               |
-| Fast tempo, high note density | Q1, Q2                 | N/A               |
-| Slow tempo, low note density  | Q3, Q4                 | N/A               |
+| High pitch                    | Q1, Q4  (HV)           | Y                 |
+| Low pitch                     | Q2, Q3  (LV)           | Y                 |
+| Large pitch variation         | Q1 (HVHA)              | Y                 |
+| Small pitch variation         | Q3, Q4 (LA)            | Y                 |
+| Wide pitch range              | Q1, Q4 (HV)            | Y                 |
+| Narrow pitch range            | Q2 (LVHA)              | Y                 |
+| Major mode                    | Q1, Q4 (HV)            | N/A               |
+| Minor mode                    | Q2, Q3 (LV)            | N/A               |
+| Fast tempo, high note density | Q1, Q2 (HA)            | N/A               |
+| Slow tempo, low note density  | Q3, Q4 (LA)            | N/A               |
 
 ### High Pitch and Low Pitch
 Determined as an average pitch from all note events in the file. For the purposes of this project, 60 (middle C) shall be determined as a threshold. Notes higher than 60 will be considered high pitch, and notes lower than or equal to 60 will be considered low pitch. An average pitch will be taken for all pieces of music.
@@ -47,3 +47,17 @@ Tempo data is provided in the original BiMMuDa dataset. A BPM of 90 or greater s
 
 ### Note Density
 Note onset density is provided in the original BiMMuDa dataset. A note onset density of 2.5 or greater shall be considered high density. The mean of note density in all melodies of a full piece shall be taken.
+
+## Sentiment Quadrants
+
+Based on research by Russell, sentiment is mapped across two dimensions: arousal (or energy) and valence (or how positive/negative the feeling is). This results in four quadrants:
+ 1. Q1: High arousal, high valence
+ 2. Q2: High arousal, low valence
+ 3. Q3: Low arousal, low valence
+ 4. Q4: Low arousal, high valence
+
+If a sentiment is associated with both Q1 and Q4, it results in a shift towards a positive value on the valence axis; similarly, if a sentiment is associated with both Q3 and Q4, it results in a shift towards a negative value on the arousal axis.
+
+In most cases, an attribute has a clear association with one sentiment axis (e.g. higher pitches in the melody map to high valence, lower pitches map to low valence). There are two exceptions: pitch variation and pitch range. While small pitch variation indicates low arousal, wide pitch variation is associated with both high arousal and high valence. Similarly, a wide pitch range is associated with high valence while a narrow pitch range is associated with low valence and high arousal.
+
+For attributes which clearly map to one axis (e.g. pitch height), they shall impact the sentiment coordinate plotting for that axis only. For attributes which indicate a change in axis on only one side, the attribute shall influence one or two axes depending on its value.
