@@ -61,3 +61,15 @@ If a sentiment is associated with both Q1 and Q4, it results in a shift towards 
 In most cases, an attribute has a clear association with one sentiment axis (e.g. higher pitches in the melody map to high valence, lower pitches map to low valence). There are two exceptions: pitch variation and pitch range. While small pitch variation indicates low arousal, wide pitch variation is associated with both high arousal and high valence. Similarly, a wide pitch range is associated with high valence while a narrow pitch range is associated with low valence and high arousal.
 
 For attributes which clearly map to one axis (e.g. pitch height), they shall impact the sentiment coordinate plotting for that axis only. For attributes which indicate a change in axis on only one side, the attribute shall influence one or two axes depending on its value.
+
+## Initial Results
+
+![A bar graph showing the quantities of quadrants identified in the BiMMuDa dataset](./quadrant_bargraph.png)
+
+Initial findings indicate that the most popular quadrant in this dataset is Q1 (high arousal, high valence), with high arousal pieces being more populous than low arousal pieces. There are a few issues with these results, however:
+
+ 1. There is no weighting of attributes (relative pitch height is considered as important as piece modality in calculating valence)
+ 2. Not all attributes have been considered (melodic contour extraction is not yet implemented)
+ 3. These results are not verified against any other metric (e.g. Spotify data contains sentiment information)
+
+Further investigation is required to assess the accuracy of this sentiment identification methodology. If this data proves accurate, it may be useful in identifying trends over time of sentiment in popular music.
